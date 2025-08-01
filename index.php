@@ -17,7 +17,7 @@
                 <div
                     class="relative w-full h-full overflow-hidden rounded-2xl shadow-2xl border-2 border-primary-light/20 dark:border-primary-dark/20 
                             group-hover:border-primary-light/40 dark:group-hover:border-primary-dark/40 transition-all duration-500 transform group-hover:-translate-y-2 z-10">
-                    <img src="shivampic1.png" alt="Professional Portrait of Shivam Mishra"
+                    <img src="assets/images/shivampic1.png" alt="Professional Portrait of Shivam Mishra"
                         class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out"
                         loading="eager" />
                     <div
@@ -297,7 +297,7 @@
                 <div
                     class="w-64 h-64 rounded-full overflow-hidden border-4 border-primary-light/30 dark:border-primary-dark/30">
                     <div class="w-full h-full bg-gray-300 dark:bg-gray-800 flex items-center justify-center">
-                        <img src="shivampic3-Photoroom.png" alt="Shivam Mishra" class="w-full h-full object-cover">
+                        <img src="assets/images/shivampic3-Photoroom.png" alt="Shivam Mishra" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
