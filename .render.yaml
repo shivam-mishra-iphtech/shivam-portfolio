@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: php-portfolio
+    env: docker
+    plan: free
+    repo: https://github.com/YOUR_GITHUB_USERNAME/shivam-portfolio
+    branch: main
+    rootDir: ./
+    dockerfilePath: ./Dockerfile
