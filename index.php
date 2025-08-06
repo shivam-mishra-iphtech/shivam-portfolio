@@ -65,201 +65,224 @@
                        text-white shadow-lg shadow-primary-light/30 dark:shadow-primary-dark/30 hover:shadow-primary-light/40 dark:hover:shadow-primary-dark/40 text-center">
                     Get In Touch
                 </a>
-               <!-- View CV Button -->
-<a onclick="openModal()" role="button"
-   class="w-auto px-8 py-3.5 border-2 border-primary-light/30 dark:border-primary-dark/30 text-primary-light dark:text-primary-dark rounded-full font-medium hover:bg-primary-light/5 dark:hover:bg-primary-dark/5 
+                <!-- View CV Button -->
+                <a onclick="openModal()" role="button"
+                    class="w-auto px-8 py-3.5 border-2 border-primary-light/30 dark:border-primary-dark/30 text-primary-light dark:text-primary-dark rounded-full font-medium hover:bg-primary-light/5 dark:hover:bg-primary-dark/5 
           transition-all hover:border-primary-light/50 dark:hover:border-primary-dark/50 shadow hover:shadow-primary-light/20 dark:hover:shadow-primary-dark/20 text-center cursor-pointer">
-    Download CV
-</a>
-
-<!-- Enhanced PDF Modal -->
-<div id="pdfModal" class="fixed inset-0 bg-black/70 dark:bg-black/80 z-50 hidden items-center justify-center backdrop-blur-sm">
-    <div class="bg-white dark:bg-gray-900 w-[95%] h-[95%] max-w-6xl rounded-xl shadow-2xl relative flex flex-col overflow-hidden transition-all duration-300 scale-95 opacity-0" id="modalContent">
-        
-        <!-- Modal Header -->
-        <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Curriculum Vitae</h3>
-            <div class="flex items-center space-x-2">
-                <!-- Download Button in Header -->
-                <a href="sample-local-pdf.pdf" download
-                   class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-md transition-colors flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                    </svg>
-                    Download
+                    Download CV
                 </a>
-                <!-- Close Button -->
-                <button onclick="closeModal()" class="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <!-- PDF Viewer Container -->
-        <div class="flex-1 relative overflow-hidden">
-            <!-- Loading Indicator -->
-            <div id="pdfLoading" class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-300">
-                <div class="animate-pulse flex flex-col items-center">
-                    <svg class="animate-spin h-10 w-10 text-blue-600 mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span class="text-gray-600 dark:text-gray-400">Loading document...</span>
-                </div>
-            </div>
-            
-            <!-- PDF Viewer -->
-            <iframe id="pdfViewer" src="sample-local-pdf.pdf#toolbar=0&navpanes=0" class="w-full h-full border-0" frameborder="0" onload="pdfLoaded()"></iframe>
-            
-            <!-- Navigation Controls (for multiple pages) -->
-            <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 hover:opacity-100 transition-opacity">
-                <button id="prevPage" class="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                    </svg>
-                </button>
-                <span id="pageInfo" class="px-3 py-2 bg-white dark:bg-gray-800 rounded-full shadow-md text-sm">Page 1 of 1</span>
-                <button id="nextPage" class="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Zoom Controls -->
-        <div class="absolute right-4 top-16 bg-white dark:bg-gray-800 rounded-md shadow-md p-1 flex flex-col space-y-1 border border-gray-200 dark:border-gray-700">
-            <button id="zoomIn" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                </svg>
-            </button>
-            <button id="zoomOut" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
-                </svg>
-            </button>
-            <button id="fitWidth" class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors" title="Fit to width">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
-                </svg>
-            </button>
-        </div>
-    </div>
-</div>
 
-<!-- Enhanced JavaScript -->
-<script>
-    let currentScale = 1;
-    const minScale = 0.5;
-    const maxScale = 2;
-    const scaleStep = 0.25;
-    
-    function openModal() {
-        const modal = document.getElementById('pdfModal');
-        const content = document.getElementById('modalContent');
-        
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        
-        // Trigger animation
-        setTimeout(() => {
-            content.classList.remove('scale-95', 'opacity-0');
-            content.classList.add('scale-100', 'opacity-100');
-        }, 10);
-        
-        // Reset zoom when opening
-        currentScale = 1;
-        updateZoom();
-    }
-    
-    function closeModal() {
-        const modal = document.getElementById('pdfModal');
-        const content = document.getElementById('modalContent');
-        
-        content.classList.remove('scale-100', 'opacity-100');
-        content.classList.add('scale-95', 'opacity-0');
-        
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }, 200);
-    }
-    
-    function pdfLoaded() {
-        document.getElementById('pdfLoading').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('pdfLoading').style.display = 'none';
-        }, 300);
-        
-        // Initialize page navigation if PDF has multiple pages
-        initPagination();
-    }
-    
-    function initPagination() {
-        const iframe = document.getElementById('pdfViewer');
-        const prevBtn = document.getElementById('prevPage');
-        const nextBtn = document.getElementById('nextPage');
-        const pageInfo = document.getElementById('pageInfo');
-        
-        // This would need to be implemented with a proper PDF.js integration
-        // For now, this is a placeholder for the functionality
-        prevBtn.addEventListener('click', () => {
-            // Previous page logic
-        });
-        
-        nextBtn.addEventListener('click', () => {
-            // Next page logic
-        });
-    }
-    
-    function updateZoom() {
-        const iframe = document.getElementById('pdfViewer');
-        // This would need proper PDF.js integration for precise zoom control
-        // For now, we'll just adjust the iframe scale with CSS
-        iframe.style.transform = `scale(${currentScale})`;
-        iframe.style.transformOrigin = '0 0';
-        iframe.style.width = `${100 / currentScale}%`;
-        iframe.style.height = `${100 / currentScale}%`;
-    }
-    
-    // Event listeners for zoom controls
-    document.getElementById('zoomIn')?.addEventListener('click', () => {
-        if (currentScale < maxScale) {
-            currentScale += scaleStep;
-            updateZoom();
-        }
-    });
-    
-    document.getElementById('zoomOut')?.addEventListener('click', () => {
-        if (currentScale > minScale) {
-            currentScale -= scaleStep;
-            updateZoom();
-        }
-    });
-    
-    document.getElementById('fitWidth')?.addEventListener('click', () => {
-        // This would need proper implementation to calculate best fit
-        currentScale = 1;
-        updateZoom();
-    });
-    
-    // Close modal when clicking on backdrop
-    document.getElementById('pdfModal')?.addEventListener('click', (e) => {
-        if (e.target === document.getElementById('pdfModal')) {
-            closeModal();
-        }
-    });
-    
-    // Close with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !document.getElementById('pdfModal').classList.contains('hidden')) {
-            closeModal();
-        }
-    });
-</script>
+                <!-- Enhanced PDF Modal -->
+                <div id="pdfModal"
+                    class="fixed inset-0 bg-black/70 dark:bg-black/80 z-50 hidden items-center justify-center backdrop-blur-sm">
+                    <div class="bg-white dark:bg-gray-900 w-[95%] h-[95%] max-w-6xl rounded-xl shadow-2xl relative flex flex-col overflow-hidden transition-all duration-300 scale-95 opacity-0"
+                        id="modalContent">
+
+                        <!-- Modal Header -->
+                        <div
+                            class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Curriculum Vitae</h3>
+                            <div class="flex items-center space-x-2">
+                                <!-- Download Button in Header -->
+                                <a href="sample-local-pdf.pdf" download
+                                    class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-md transition-colors flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                    Download
+                                </a>
+                                <!-- Close Button -->
+                                <button onclick="closeModal()"
+                                    class="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- PDF Viewer Container -->
+                        <div class="flex-1 relative overflow-hidden">
+                            <!-- Loading Indicator -->
+                            <div id="pdfLoading"
+                                class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-300">
+                                <div class="animate-pulse flex flex-col items-center">
+                                    <svg class="animate-spin h-10 w-10 text-blue-600 mb-3"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
+                                    <span class="text-gray-600 dark:text-gray-400">Loading document...</span>
+                                </div>
+                            </div>
+
+                            <!-- PDF Viewer -->
+                            <iframe id="pdfViewer" src="sample-local-pdf.pdf#toolbar=0&navpanes=0"
+                                class="w-full h-full border-0" frameborder="0" onload="pdfLoaded()"></iframe>
+
+                            <!-- Navigation Controls (for multiple pages) -->
+                            <div
+                                class="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 hover:opacity-100 transition-opacity">
+                                <button id="prevPage"
+                                    class="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                <span id="pageInfo"
+                                    class="px-3 py-2 bg-white dark:bg-gray-800 rounded-full shadow-md text-sm">Page 1 of
+                                    1</span>
+                                <button id="nextPage"
+                                    class="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Zoom Controls -->
+                        <div
+                            class="absolute right-4 top-16 bg-white dark:bg-gray-800 rounded-md shadow-md p-1 flex flex-col space-y-1 border border-gray-200 dark:border-gray-700">
+                            <button id="zoomIn"
+                                class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                            <button id="zoomOut"
+                                class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 12H4" />
+                                </svg>
+                            </button>
+                            <button id="fitWidth"
+                                class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+                                title="Fit to width">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced JavaScript -->
+                <script>
+                    let currentScale = 1;
+                    const minScale = 0.5;
+                    const maxScale = 2;
+                    const scaleStep = 0.25;
+
+                    function openModal() {
+                        const modal = document.getElementById('pdfModal');
+                        const content = document.getElementById('modalContent');
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                        // Trigger animation
+                        setTimeout(() => {
+                            content.classList.remove('scale-95', 'opacity-0');
+                            content.classList.add('scale-100', 'opacity-100');
+                        }, 10);
+                        // Reset zoom when opening
+                        currentScale = 1;
+                        updateZoom();
+                    }
+
+                    function closeModal() {
+                        const modal = document.getElementById('pdfModal');
+                        const content = document.getElementById('modalContent');
+                        content.classList.remove('scale-100', 'opacity-100');
+                        content.classList.add('scale-95', 'opacity-0');
+                        setTimeout(() => {
+                            modal.classList.add('hidden');
+                            modal.classList.remove('flex');
+                        }, 200);
+                    }
+
+                    function pdfLoaded() {
+                        document.getElementById('pdfLoading').style.opacity = '0';
+                        setTimeout(() => {
+                            document.getElementById('pdfLoading').style.display = 'none';
+                        }, 300);
+                        // Initialize page navigation if PDF has multiple pages
+                        initPagination();
+                    }
+
+                    function initPagination() {
+                        const iframe = document.getElementById('pdfViewer');
+                        const prevBtn = document.getElementById('prevPage');
+                        const nextBtn = document.getElementById('nextPage');
+                        const pageInfo = document.getElementById('pageInfo');
+                        // This would need to be implemented with a proper PDF.js integration
+                        // For now, this is a placeholder for the functionality
+                        prevBtn.addEventListener('click', () => {
+                            // Previous page logic
+                        });
+                        nextBtn.addEventListener('click', () => {
+                            // Next page logic
+                        });
+                    }
+
+                    function updateZoom() {
+                        const iframe = document.getElementById('pdfViewer');
+                        // This would need proper PDF.js integration for precise zoom control
+                        // For now, we'll just adjust the iframe scale with CSS
+                        iframe.style.transform = `scale(${currentScale})`;
+                        iframe.style.transformOrigin = '0 0';
+                        iframe.style.width = `${100 / currentScale}%`;
+                        iframe.style.height = `${100 / currentScale}%`;
+                    }
+                    // Event listeners for zoom controls
+                    document.getElementById('zoomIn') ? .addEventListener('click', () => {
+                        if (currentScale < maxScale) {
+                            currentScale += scaleStep;
+                            updateZoom();
+                        }
+                    });
+                    document.getElementById('zoomOut') ? .addEventListener('click', () => {
+                        if (currentScale > minScale) {
+                            currentScale -= scaleStep;
+                            updateZoom();
+                        }
+                    });
+                    document.getElementById('fitWidth') ? .addEventListener('click', () => {
+                        // This would need proper implementation to calculate best fit
+                        currentScale = 1;
+                        updateZoom();
+                    });
+                    // Close modal when clicking on backdrop
+                    document.getElementById('pdfModal') ? .addEventListener('click', (e) => {
+                        if (e.target === document.getElementById('pdfModal')) {
+                            closeModal();
+                        }
+                    });
+                    // Close with Escape key
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape' && !document.getElementById('pdfModal').classList.contains(
+                                'hidden')) {
+                            closeModal();
+                        }
+                    });
+                </script>
 
             </div>
 
@@ -297,7 +320,8 @@
                 <div
                     class="w-64 h-64 rounded-full overflow-hidden border-4 border-primary-light/30 dark:border-primary-dark/30">
                     <div class="w-full h-full bg-gray-300 dark:bg-gray-800 flex items-center justify-center">
-                        <img src="assets/images/shivampic3-Photoroom.png" alt="Shivam Mishra" class="w-full h-full object-cover">
+                        <img src="assets/images/shivampic3-Photoroom.png" alt="Shivam Mishra"
+                            class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -354,7 +378,6 @@
         <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
             <span class="gradient-text">Technical Skills</span>
         </h2>
-
         <!-- Tab Navigation -->
         <div class="flex flex-wrap justify-center mb-8 border-b border-gray-300 dark:border-gray-700">
             <button
@@ -394,94 +417,94 @@
         <div class="tab-content">
             <!-- All Skills Tab -->
             <div id="all" class="tab-pane active">
-                <div class="flex flex-wrap justify-center gap-6 text-center ">
+                <div class="flex flex-wrap justify-center gap-4 text-center ">
                     <!-- Programming Skills -->
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark  skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                            class="w-12 h-12 mb-2" alt="PHP" />
+                            class="w-8 h-8 mb-1" alt="PHP" />
                         <span>PHP</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png"
-                            class="w-12 h-12 mb-2" alt="Laravel" />
+                            class="w-8 h-8 mb-1" alt="Laravel" />
                         <span>Laravel</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/codeigniter/codeigniter-plain.svg"
-                            class="w-12 h-12 mb-2" alt="CodeIgniter" />
+                            class="w-8 h-8 mb-1" alt="CodeIgniter" />
                         <span>CodeIgniter</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                            class="w-12 h-12 mb-2" alt="Java" />
+                            class="w-8 h-8 mb-1" alt="Java" />
                         <span>Java</span>
                     </div>
 
                     <!-- Web Skills -->
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                            class="w-12 h-12 mb-2" alt="HTML5" />
+                            class="w-8 h-8 mb-1" alt="HTML5" />
                         <span>HTML5</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                            class="w-12 h-12 mb-2" alt="CSS3" />
+                            class="w-8 h-8 mb-1" alt="CSS3" />
                         <span>CSS3</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                            class="w-12 h-12 mb-2" alt="JavaScript" />
+                            class="w-8 h-8 mb-1" alt="JavaScript" />
                         <span>JavaScript</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg"
-                            class="w-12 h-12 mb-2" alt="WordPress" />
+                            class="w-8 h-8 mb-1" alt="WordPress" />
                         <span>WordPress</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                            class="w-12 h-12 mb-2" alt="MySQL" />
+                            class="w-8 h-8 mb-1" alt="MySQL" />
                         <span>MySQL</span>
                     </div>
 
                     <!-- Tools & More -->
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                            class="w-12 h-12 mb-2" alt="Git" />
+                            class="w-8 h-8 mb-1" alt="Git" />
                         <span>Git/GitHub</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://miro.medium.com/v2/resize:fit:440/1*J3G3akaMpUOLegw0p0qthA.png"
-                            class="w-12 h-12 mb-2" alt="API" />
+                            class="w-8 h-8 mb-1" alt="API" />
                         <span>RESTful APIs</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn2.iconfinder.com/data/icons/programming-76/512/MVC-model-view-controller-512.png"
-                            class="w-12 h-12 mb-2" alt="MVC" />
+                            class="w-8 h-8 mb-1" alt="MVC" />
                         <span>MVC Architecture</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                            class="w-12 h-12 mb-2" alt="Bootstrap" />
+                            class="w-8 h-8 mb-1" alt="Bootstrap" />
                         <span>Bootstrap</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg"
-                            class="w-12 h-12 mb-2" alt="jQuery" />
+                            class="w-8 h-8 mb-1" alt="jQuery" />
                         <span>jQuery/AJAX</span>
                     </div>
                 </div>
@@ -489,29 +512,29 @@
 
             <!-- Programming Tab -->
             <div id="programming" class="tab-pane hidden">
-                <div class="flex flex-wrap justify-center gap-6">
+                <div class="flex flex-wrap justify-center gap-4">
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                            class="w-12 h-12 mb-2" alt="PHP" />
+                            class="w-8 h-8 mb-1" alt="PHP" />
                         <span>PHP</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png"
-                            class="w-12 h-12 mb-2" alt="Laravel" />
+                            class="w-8 h-8 mb-1" alt="Laravel" />
                         <span>Laravel</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/codeigniter/codeigniter-plain.svg"
-                            class="w-12 h-12 mb-2" alt="CodeIgniter" />
+                            class="w-8 h-8 mb-1" alt="CodeIgniter" />
                         <span>CodeIgniter</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                            class="w-12 h-12 mb-2" alt="Java" />
+                            class="w-8 h-8 mb-1" alt="Java" />
                         <span>Java</span>
                     </div>
                 </div>
@@ -519,35 +542,35 @@
 
             <!-- Web Technologies Tab -->
             <div id="web" class="tab-pane hidden text-center">
-                <div class="flex flex-wrap justify-center gap-6">
+                <div class="flex flex-wrap justify-center gap-4">
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                            class="w-12 h-12 mb-2" alt="HTML5" />
+                            class="w-8 h-8 mb-1" alt="HTML5" />
                         <span>HTML5</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                            class="w-12 h-12 mb-2" alt="CSS3" />
+                            class="w-8 h-8 mb-1" alt="CSS3" />
                         <span>CSS3</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                            class="w-12 h-12 mb-2" alt="JavaScript" />
+                            class="w-8 h-8 mb-1" alt="JavaScript" />
                         <span>JavaScript</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg"
-                            class="w-12 h-12 mb-2" alt="WordPress" />
+                            class="w-8 h-8 mb-1" alt="WordPress" />
                         <span>WordPress</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                            class="w-12 h-12 mb-2" alt="MySQL" />
+                            class="w-8 h-8 mb-1" alt="MySQL" />
                         <span>MySQL</span>
                     </div>
                 </div>
@@ -555,35 +578,35 @@
 
             <!-- Tools Tab -->
             <div id="tools" class="tab-pane hidden">
-                <div class="flex flex-wrap justify-center gap-6 text-center">
+                <div class="flex flex-wrap justify-center gap-4 text-center">
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                            class="w-12 h-12 mb-2" alt="Git" />
+                            class="w-8 h-8 mb-1" alt="Git" />
                         <span>Git/GitHub</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://miro.medium.com/v2/resize:fit:440/1*J3G3akaMpUOLegw0p0qthA.png"
-                            class="w-12 h-12 mb-2" alt="API" />
+                            class="w-8 h-8 mb-1" alt="API" />
                         <span>RESTful APIs</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
-                        <img src="https://w7.pngwing.com/pngs/915/723/png-transparent-model-view-controller-mvc-thumbnail.png"
-                            class="w-12 h-12 mb-2" alt="MVC" />
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
+                        <img src="https://cdn2.iconfinder.com/data/icons/programming-76/512/MVC-model-view-controller-512.png"
+                            class="w-8 h-8 mb-1" alt="MVC" />
                         <span>MVC Architecture</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                            class="w-12 h-12 mb-2" alt="Bootstrap" />
+                            class="w-8 h-8 mb-1" alt="Bootstrap" />
                         <span>Bootstrap</span>
                     </div>
                     <div
-                        class="px-6 py-4 bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-40 hover:scale-105 transition-transform">
+                        class="px-4 py-3 dark:shadow-custom-dark dark:hover:shadow-hover-dark skill_box_style bg-gray-100 dark:bg-dark rounded-lg flex flex-col items-center w-[155px] hover:scale-105 transition-transform">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg"
-                            class="w-12 h-12 mb-2" alt="jQuery" />
+                            class="w-8 h-8 mb-1" alt="jQuery" />
                         <span>jQuery/AJAX</span>
                     </div>
                 </div>

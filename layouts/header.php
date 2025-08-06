@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -36,6 +37,12 @@
                             dark: '#020617'
                         }
                     },
+                 
+                    boxShadow: {
+                        'custom-dark': '2px 2px 4px rgba(255, 255, 255, 0.4)',
+                        'inset-dark': 'inset 5px 5px 15px rgba(255, 255, 255, 0.05)',
+                        'hover-dark': '4px 4px 7px rgba(255, 255, 255, 0.5)',
+                    },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-slow': 'pulse 6s ease-in-out infinite',
@@ -57,6 +64,17 @@
     </script>
 
     <style>
+        .skill_box_style{
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+        }
+        .skill_box_style:hover{
+            box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
+
+        }
+        .skill_box_style span{
+            font-size:14px;
+        }
         .smart-scroller {
             position: fixed;
             right: 25px;
@@ -152,7 +170,7 @@
 
         .card-hover:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         .skill-bar {
