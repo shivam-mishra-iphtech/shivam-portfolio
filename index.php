@@ -72,215 +72,52 @@
                     Download CV
                 </a>
 
-                <!-- Enhanced PDF Modal -->
-                <div id="pdfModal"
-                    class="fixed inset-0 bg-black/70 dark:bg-black/80 z-50 hidden items-center justify-center backdrop-blur-sm">
-                    <div class="bg-white dark:bg-gray-900 w-[95%] h-[95%] max-w-6xl rounded-xl shadow-2xl relative flex flex-col overflow-hidden transition-all duration-300 scale-95 opacity-0"
-                        id="modalContent">
-
-                        <!-- Modal Header -->
+                <!-- Simple PDF Modal -->
+                <div id="pdfModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center">
+                    <div
+                        class="bg-white dark:bg-gray-900 w-[90%] h-[90%] max-w-5xl rounded-lg shadow-xl relative overflow-hidden flex flex-col">
+                        <!-- Header -->
                         <div
-                            class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Curriculum Vitae</h3>
-                            <div class="flex items-center space-x-2">
-                                <!-- Download Button in Header -->
+                            class="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-800 border-b border-gray-300 dark:border-gray-700">
+                            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">My CV</h2>
+                            <div class="flex gap-2">
                                 <a href="sample-local-pdf.pdf" download
-                                    class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-md transition-colors flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                    </svg>
-                                    Download
+                                    class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition">
+                                    Download PDF
                                 </a>
-                                <!-- Close Button -->
                                 <button onclick="closeModal()"
-                                    class="p-1.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
+                                    class="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
+                                    ✕
                                 </button>
                             </div>
                         </div>
 
-                        <!-- PDF Viewer Container -->
-                        <div class="flex-1 relative overflow-hidden">
-                            <!-- Loading Indicator -->
-                            <div id="pdfLoading"
-                                class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-900 transition-opacity duration-300">
-                                <div class="animate-pulse flex flex-col items-center">
-                                    <svg class="animate-spin h-10 w-10 text-blue-600 mb-3"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                            stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
-                                    <span class="text-gray-600 dark:text-gray-400">Loading document...</span>
-                                </div>
-                            </div>
-
-                            <!-- PDF Viewer -->
-                            <iframe id="pdfViewer" src="sample-local-pdf.pdf#toolbar=0&navpanes=0"
-                                class="w-full h-full border-0" frameborder="0" onload="pdfLoaded()"></iframe>
-
-                            <!-- Navigation Controls (for multiple pages) -->
-                            <div
-                                class="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 hover:opacity-100 transition-opacity">
-                                <button id="prevPage"
-                                    class="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-                                <span id="pageInfo"
-                                    class="px-3 py-2 bg-white dark:bg-gray-800 rounded-full shadow-md text-sm">Page 1 of
-                                    1</span>
-                                <button id="nextPage"
-                                    class="p-2 bg-white dark:bg-gray-800 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Zoom Controls -->
-                        <div
-                            class="absolute right-4 top-16 bg-white dark:bg-gray-800 rounded-md shadow-md p-1 flex flex-col space-y-1 border border-gray-200 dark:border-gray-700">
-                            <button id="zoomIn"
-                                class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                            </button>
-                            <button id="zoomOut"
-                                class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M20 12H4" />
-                                </svg>
-                            </button>
-                            <button id="fitWidth"
-                                class="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
-                                title="Fit to width">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                                </svg>
-                            </button>
-                        </div>
+                        <!-- PDF Viewer -->
+                        <iframe src="sample-local-pdf.pdf#toolbar=0&navpanes=0" class="flex-1 w-full"
+                            frameborder="0"></iframe>
                     </div>
                 </div>
 
-                <!-- Enhanced JavaScript -->
+                <!-- Scripts -->
                 <script>
-                    let currentScale = 1;
-                    const minScale = 0.5;
-                    const maxScale = 2;
-                    const scaleStep = 0.25;
-
                     function openModal() {
                         const modal = document.getElementById('pdfModal');
-                        const content = document.getElementById('modalContent');
                         modal.classList.remove('hidden');
                         modal.classList.add('flex');
-                        // Trigger animation
-                        setTimeout(() => {
-                            content.classList.remove('scale-95', 'opacity-0');
-                            content.classList.add('scale-100', 'opacity-100');
-                        }, 10);
-                        // Reset zoom when opening
-                        currentScale = 1;
-                        updateZoom();
                     }
 
                     function closeModal() {
                         const modal = document.getElementById('pdfModal');
-                        const content = document.getElementById('modalContent');
-                        content.classList.remove('scale-100', 'opacity-100');
-                        content.classList.add('scale-95', 'opacity-0');
-                        setTimeout(() => {
-                            modal.classList.add('hidden');
-                            modal.classList.remove('flex');
-                        }, 200);
+                        modal.classList.remove('flex');
+                        modal.classList.add('hidden');
                     }
-
-                    function pdfLoaded() {
-                        document.getElementById('pdfLoading').style.opacity = '0';
-                        setTimeout(() => {
-                            document.getElementById('pdfLoading').style.display = 'none';
-                        }, 300);
-                        // Initialize page navigation if PDF has multiple pages
-                        initPagination();
-                    }
-
-                    function initPagination() {
-                        const iframe = document.getElementById('pdfViewer');
-                        const prevBtn = document.getElementById('prevPage');
-                        const nextBtn = document.getElementById('nextPage');
-                        const pageInfo = document.getElementById('pageInfo');
-                        // This would need to be implemented with a proper PDF.js integration
-                        // For now, this is a placeholder for the functionality
-                        prevBtn.addEventListener('click', () => {
-                            // Previous page logic
-                        });
-                        nextBtn.addEventListener('click', () => {
-                            // Next page logic
-                        });
-                    }
-
-                    function updateZoom() {
-                        const iframe = document.getElementById('pdfViewer');
-                        // This would need proper PDF.js integration for precise zoom control
-                        // For now, we'll just adjust the iframe scale with CSS
-                        iframe.style.transform = `scale(${currentScale})`;
-                        iframe.style.transformOrigin = '0 0';
-                        iframe.style.width = `${100 / currentScale}%`;
-                        iframe.style.height = `${100 / currentScale}%`;
-                    }
-                    // Event listeners for zoom controls
-                    document.getElementById('zoomIn') ? .addEventListener('click', () => {
-                        if (currentScale < maxScale) {
-                            currentScale += scaleStep;
-                            updateZoom();
-                        }
-                    });
-                    document.getElementById('zoomOut') ? .addEventListener('click', () => {
-                        if (currentScale > minScale) {
-                            currentScale -= scaleStep;
-                            updateZoom();
-                        }
-                    });
-                    document.getElementById('fitWidth') ? .addEventListener('click', () => {
-                        // This would need proper implementation to calculate best fit
-                        currentScale = 1;
-                        updateZoom();
-                    });
-                    // Close modal when clicking on backdrop
-                    document.getElementById('pdfModal') ? .addEventListener('click', (e) => {
-                        if (e.target === document.getElementById('pdfModal')) {
-                            closeModal();
-                        }
-                    });
-                    // Close with Escape key
+                    // Close modal on Escape key
                     document.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape' && !document.getElementById('pdfModal').classList.contains(
-                                'hidden')) {
-                            closeModal();
-                        }
+                        if (e.key === 'Escape') closeModal();
+                    });
+                    // Close modal on backdrop click
+                    document.getElementById('pdfModal').addEventListener('click', (e) => {
+                        if (e.target.id === 'pdfModal') closeModal();
                     });
                 </script>
 
