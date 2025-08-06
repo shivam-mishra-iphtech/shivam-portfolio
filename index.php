@@ -67,11 +67,9 @@
                 </a>
                 <!-- View CV Button -->
                 <a onclick="openModal()" role="button"
-                    class="w-auto px-8 py-3.5 border-2 border-primary-light/30 dark:border-primary-dark/30 text-primary-light dark:text-primary-dark rounded-full font-medium hover:bg-primary-light/5 dark:hover:bg-primary-dark/5 
-          transition-all hover:border-primary-light/50 dark:hover:border-primary-dark/50 shadow hover:shadow-primary-light/20 dark:hover:shadow-primary-dark/20 text-center cursor-pointer">
+                    class="w-auto px-8 py-3.5 border-2 border-primary-light/30 dark:border-primary-dark/30 text-primary-light dark:text-primary-dark rounded-full font-medium hover:bg-primary-light/5 dark:hover:bg-primary-dark/5 transition-all hover:border-primary-light/50 dark:hover:border-primary-dark/50 shadow hover:shadow-primary-light/20 dark:hover:shadow-primary-dark/20 text-center cursor-pointer">
                     Download CV
                 </a>
-
                 <!-- Simple PDF Modal -->
                 <div id="pdfModal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center">
                     <div
@@ -97,30 +95,6 @@
                             frameborder="0"></iframe>
                     </div>
                 </div>
-
-                <!-- Scripts -->
-                <script>
-                    function openModal() {
-                        const modal = document.getElementById('pdfModal');
-                        modal.classList.remove('hidden');
-                        modal.classList.add('flex');
-                    }
-
-                    function closeModal() {
-                        const modal = document.getElementById('pdfModal');
-                        modal.classList.remove('flex');
-                        modal.classList.add('hidden');
-                    }
-                    // Close modal on Escape key
-                    document.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape') closeModal();
-                    });
-                    // Close modal on backdrop click
-                    document.getElementById('pdfModal').addEventListener('click', (e) => {
-                        if (e.target.id === 'pdfModal') closeModal();
-                    });
-                </script>
-
             </div>
 
             <div class="flex justify-center md:justify-start gap-5 pt-4">

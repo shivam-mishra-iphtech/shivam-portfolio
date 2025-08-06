@@ -1043,3 +1043,25 @@
          document.head.insertAdjacentHTML('beforeend', additionalCSS);
      })();
  </script>
+ <!-- Scripts -->
+ <script>
+     function openModal() {
+         const modal = document.getElementById('pdfModal');
+         modal.classList.remove('hidden');
+         modal.classList.add('flex');
+     }
+
+     function closeModal() {
+         const modal = document.getElementById('pdfModal');
+         modal.classList.remove('flex');
+         modal.classList.add('hidden');
+     }
+     // Close modal on Escape key
+     document.addEventListener('keydown', (e) => {
+         if (e.key === 'Escape') closeModal();
+     });
+     // Close modal on backdrop click
+     document.getElementById('pdfModal').addEventListener('click', (e) => {
+         if (e.target.id === 'pdfModal') closeModal();
+     });
+ </script>
