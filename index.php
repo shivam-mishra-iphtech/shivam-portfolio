@@ -79,7 +79,7 @@
                             class="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-800 border-b border-gray-300 dark:border-gray-700">
                             <h2 class="text-lg font-semibold text-gray-800 dark:text-white">My CV</h2>
                             <div class="flex gap-2">
-                                <a href="sample-local-pdf.pdf" download
+                                <a  href="sample-local-pdf.pdf" download
                                     class="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition">
                                     Download PDF
                                 </a>
