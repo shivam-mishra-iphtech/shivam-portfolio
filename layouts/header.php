@@ -37,7 +37,6 @@
                             dark: '#020617'
                         }
                     },
-                 
                     boxShadow: {
                         'custom-dark': '2px 2px 4px rgba(255, 255, 255, 0.4)',
                         'inset-dark': 'inset 5px 5px 15px rgba(255, 255, 255, 0.05)',
@@ -64,17 +63,24 @@
     </script>
 
     <style>
-        .skill_box_style{
+        .side_scroller_hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .skill_box_style {
             box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
         }
-        .skill_box_style:hover{
+
+        .skill_box_style:hover {
             box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.5);
 
         }
-        .skill_box_style span{
-            font-size:14px;
+
+        .skill_box_style span {
+            font-size: 14px;
         }
+
         .smart-scroller {
             position: fixed;
             right: 25px;

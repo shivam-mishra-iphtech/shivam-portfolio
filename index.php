@@ -91,8 +91,9 @@
                         </div>
 
                         <!-- PDF Viewer -->
-                        <iframe src="sample-local-pdf.pdf#toolbar=0&navpanes=0" class="flex-1 w-full"
-                            frameborder="0"></iframe>
+                        <iframe src="sample-local-pdf.pdf#toolbar=0&navpanes=0 " class="flex-1 w-full side_scroller_hide"
+                            frameborder="0">
+                        </iframe>
                     </div>
                 </div>
             </div>
