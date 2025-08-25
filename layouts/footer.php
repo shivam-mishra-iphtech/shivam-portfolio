@@ -1065,3 +1065,414 @@
          if (e.target.id === 'pdfModal') closeModal();
      });
  </script>
+ <!-- Preloader -->
+ <script>
+(function() {
+  const startTime = performance.now();
+  const SHOW_LOADER_THRESHOLD = 500; // Show loader if loading takes more than 500ms
+  const MIN_LOADER_DISPLAY = 1000; // Minimum time to show loader if shown (1 second)
+  
+  let loaderShown = false;
+  let loaderStartTime = 0;
+  const loader = document.getElementById("preloader-x9k2");
+  
+  // Function to show loader
+  function showLoader() {
+    if (!loaderShown && loader) {
+      loaderShown = true;
+      loaderStartTime = performance.now();
+      loader.classList.add('active-z8q3');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  // Function to hide loader
+  function hideLoader() {
+    if (loader) {
+      const hideLoaderNow = () => {
+        loader.classList.add('fade-out-w4q1');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          if (loader.parentNode) {
+            loader.remove();
+          }
+        }, 800);
+      };
+      
+      if (loaderShown) {
+        // If loader is shown, ensure it displays for minimum time
+        const loaderDisplayTime = performance.now() - loaderStartTime;
+        const remainingTime = Math.max(0, MIN_LOADER_DISPLAY - loaderDisplayTime);
+        setTimeout(hideLoaderNow, remainingTime);
+      } else {
+        // If loader was never shown, just remove it immediately
+        loader.remove();
+      }
+    }
+  }
+  
+  // Check if we should show loader after threshold time
+  setTimeout(() => {
+    // Only show if page is still loading
+    if (document.readyState !== 'complete') {
+      showLoader();
+    }
+  }, SHOW_LOADER_THRESHOLD);
+  
+  // Hide loader when page is fully loaded
+  if (document.readyState === 'complete') {
+    // Page already loaded
+    hideLoader();
+  } else {
+    window.addEventListener("load", hideLoader);
+  }
+  
+  // Backup: Hide loader after maximum 10 seconds
+  setTimeout(() => {
+    if (loader && !loader.classList.contains('fade-out-w4q1')) {
+      hideLoader();
+    }
+  }, 10000);
+})();
+</script><!-- Preloader -->
+<div id="preloader-x9k2">
+  <div class="preloader-content-w4p9">
+    <div class="spinner-container-q1r6">
+      <div class="spinner-m8z1"></div>
+      <div class="spinner-ring-k4x7"></div>
+      <div class="center-dot-n5y8"></div>
+    </div>
+    <p>Loading portfolio...</p>
+    <div class="progress-dots-h9w2">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <!-- Background particles -->
+  <div class="bg-particles-x3m5">
+    <div class="particle-w1q4"></div>
+    <div class="particle-w1q4"></div>
+    <div class="particle-w1q4"></div>
+    <div class="particle-w1q4"></div>
+    <div class="particle-w1q4"></div>
+  </div>
+</div>
+
+<style>
+/* Hide page content only when loader is active */
+body:has(#preloader-x9k2.active-z8q3) {
+  overflow: hidden;
+}
+
+/* Enhanced Preloader Overlay - Hidden by default, shown only when needed */
+#preloader-x9k2 {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 100%);
+  background-size: 400% 400%;
+  animation: gradientMove-m7x2 6s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Show loader when active */
+#preloader-x9k2.active-z8q3 {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes gradientMove-m7x2 {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Background Particles */
+.bg-particles-x3m5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle-w1q4 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: floatUp-y6k1 8s infinite linear;
+}
+
+.particle-w1q4:nth-child(1) { 
+  left: 20%; width: 20px; height: 20px; 
+  animation-delay: 0s; 
+  background: rgba(255, 107, 107, 0.3);
+}
+
+.particle-w1q4:nth-child(2) { 
+  left: 40%; width: 15px; height: 15px; 
+  animation-delay: 2s; 
+  background: rgba(78, 205, 196, 0.3);
+}
+
+.particle-w1q4:nth-child(3) { 
+  left: 60%; width: 25px; height: 25px; 
+  animation-delay: 4s; 
+  background: rgba(255, 202, 87, 0.3);
+}
+
+.particle-w1q4:nth-child(4) { 
+  left: 80%; width: 18px; height: 18px; 
+  animation-delay: 1s; 
+  background: rgba(116, 185, 255, 0.3);
+}
+
+.particle-w1q4:nth-child(5) { 
+  left: 10%; width: 22px; height: 22px; 
+  animation-delay: 3s; 
+  background: rgba(162, 155, 254, 0.3);
+}
+
+@keyframes floatUp-y6k1 {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Centered Content */
+.preloader-content-w4p9 {
+  text-align: center;
+  z-index: 10;
+  position: relative;
+}
+
+/* Enhanced Spinner Container */
+.spinner-container-q1r6 {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+}
+
+/* Main Spinner */
+.spinner-m8z1 {
+  width: 80px;
+  height: 80px;
+  border: 4px solid transparent;
+  border-top: 4px solid #ff6b6b;
+  border-right: 4px solid #4ecdc4;
+  border-bottom: 4px solid #45b7d1;
+  border-left: 4px solid #96ceb4;
+  border-radius: 50%;
+  animation: spinColorful-x9w5 2s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Secondary Ring */
+.spinner-ring-k4x7 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border: 3px solid transparent;
+  border-top: 3px solid #feca57;
+  border-right: 3px solid #ff9ff3;
+  border-bottom: 3px solid #54a0ff;
+  border-left: 3px solid #5f27cd;
+  border-radius: 50%;
+  animation: spinColorful-x9w5 1.5s linear infinite reverse;
+}
+
+/* Center Dot */
+.center-dot-n5y8 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse-k7m3 1.5s ease-in-out infinite;
+}
+
+@keyframes spinColorful-x9w5 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-k7m3 {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
+  }
+}
+
+/* Enhanced Loading text */
+#preloader-x9k2 p {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #ffffff;
+  margin: 15px 0;
+  letter-spacing: 2px;
+  animation: textGlow-w9k2 2s ease-in-out infinite;
+}
+
+@keyframes textGlow-w9k2 {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: translateY(0);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 30px rgba(255, 107, 107, 0.6);
+    transform: translateY(-3px);
+  }
+}
+
+/* Progress Dots */
+.progress-dots-h9w2 {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.progress-dots-h9w2 span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: dotPulse-z7k5 1.5s ease-in-out infinite;
+}
+
+.progress-dots-h9w2 span:nth-child(1) {
+  animation-delay: 0s;
+  background: #ff6b6b;
+}
+
+.progress-dots-h9w2 span:nth-child(2) {
+  animation-delay: 0.3s;
+  background: #4ecdc4;
+}
+
+.progress-dots-h9w2 span:nth-child(3) {
+  animation-delay: 0.6s;
+  background: #feca57;
+}
+
+@keyframes dotPulse-z7k5 {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* Fade out effect */
+#preloader-x9k2.fade-out-w4q1 {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.05);
+}
+</style>
+
+<script>
+(function() {
+  const startTime = performance.now();
+  const SHOW_LOADER_THRESHOLD = 500; // Show loader if loading takes more than 500ms
+  const MIN_LOADER_DISPLAY = 1000; // Minimum time to show loader if shown (1 second)
+  
+  let loaderShown = false;
+  let loaderStartTime = 0;
+  const loader = document.getElementById("preloader");
+  
+  // Function to show loader
+  function showLoader() {
+    if (!loaderShown && loader) {
+      loaderShown = true;
+      loaderStartTime = performance.now();
+      loader.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  // Function to hide loader
+  function hideLoader() {
+    if (loader) {
+      const hideLoaderNow = () => {
+        loader.classList.add('fade-out');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          if (loader.parentNode) {
+            loader.remove();
+          }
+        }, 800);
+      };
+      
+      if (loaderShown) {
+        // If loader is shown, ensure it displays for minimum time
+        const loaderDisplayTime = performance.now() - loaderStartTime;
+        const remainingTime = Math.max(0, MIN_LOADER_DISPLAY - loaderDisplayTime);
+        setTimeout(hideLoaderNow, remainingTime);
+      } else {
+        // If loader was never shown, just remove it immediately
+        loader.remove();
+      }
+    }
+  }
+  
+  // Check if we should show loader after threshold time
+  setTimeout(() => {
+    // Only show if page is still loading
+    if (document.readyState !== 'complete') {
+      showLoader();
+    }
+  }, SHOW_LOADER_THRESHOLD);
+  
+  // Hide loader when page is fully loaded
+  if (document.readyState === 'complete') {
+    // Page already loaded
+    hideLoader();
+  } else {
+    window.addEventListener("load", hideLoader);
+  }
+  
+  // Backup: Hide loader after maximum 10 seconds
+  setTimeout(() => {
+    if (loader && !loader.classList.contains('fade-out')) {
+      hideLoader();
+    }
+  }, 10000);
+})();
+</script>
